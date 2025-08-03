@@ -1,0 +1,27 @@
+# Database Connection
+DATABASE_URL="mongodb+srv://sam:sam321123@cluster0.6psiz.mongodb.net/ecommerce"
+
+# NextAuth
+NEXTAUTH_URL="http://localhost:3001"
+NEXTAUTH_SECRET="YourSuperSecretKeyHere-UseAStrongSecretKey"
+
+# Admin API Connection
+NEXT_PUBLIC_API_URL="http://localhost:3000/api"
+
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y29uY3JldGUtbXV0dC02LmNsZXJrLmFjY291bnRzLmRldiQ
+CLERK_SECRET_KEY=sk_test_xRcw8YjDFj5GxfabiwRZHz9yQM9I43PYM2nrjYAst4
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+
+# Stripe
+
+FRONTEND_STORE_URL=http://localhost:3001
+
+# Cloudinary
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=dq03afeam
+CLOUDINARY_API_KEY=854841872594433
+CLOUDINARY_API_SECRET=r_YkZUG0TiZv2xsWl0X3YnUC7jE
+CLOUDINARY_APP_ID=app_2vzqOgMaii8aPIe2l1Ien0mvz7z 

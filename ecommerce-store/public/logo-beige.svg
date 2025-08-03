@@ -1,0 +1,42 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .main-letters { 
+        font-family: 'Times New Roman', 'Times', serif; 
+        font-weight: bold; 
+        font-size: 140px; 
+        letter-spacing: -5px;
+      }
+      .sub-text { 
+        font-family: 'Times New Roman', 'Times', serif; 
+        font-weight: bold; 
+        font-size: 20px; 
+        letter-spacing: 3px;
+      }
+    </style>
+  </defs>
+  
+  <!-- Circular beige background -->
+  <circle cx="200" cy="200" r="200" fill="#b8a082" stroke="none"/>
+  
+  <!-- Diamond geometric pattern overlay -->
+  <g stroke="#ffffff" stroke-width="2" fill="none" opacity="0.3">
+    <!-- Central diamond -->
+    <polygon points="200,120 280,200 200,280 120,200"/>
+    
+    <!-- Inner diamond lines -->
+    <line x1="200" y1="120" x2="200" y2="280"/>
+    <line x1="120" y1="200" x2="280" y2="200"/>
+    <line x1="160" y1="160" x2="240" y2="240"/>
+    <line x1="240" y1="160" x2="160" y2="240"/>
+    
+    <!-- Outer diamond frame -->
+    <polygon points="200,80 320,200 200,320 80,200"/>
+  </g>
+  
+  <!-- Large NA letters -->
+  <text x="200" y="230" class="main-letters" text-anchor="middle" fill="#000000">NA</text>
+  
+  <!-- NOUR ABAYA text -->
+  <text x="200" y="270" class="sub-text" text-anchor="middle" fill="#000000">NOUR ABAYA</text>
+</svg>

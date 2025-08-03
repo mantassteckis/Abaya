@@ -1,0 +1,30 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .main-letters { 
+        font-family: 'Times New Roman', 'Times', serif; 
+        font-weight: bold; 
+        font-size: 12px; 
+        letter-spacing: -1px;
+      }
+    </style>
+  </defs>
+  
+  <!-- Circular beige background -->
+  <circle cx="16" cy="16" r="16" fill="#b8a082" stroke="none"/>
+  
+  <!-- Diamond geometric pattern overlay -->
+  <g stroke="#ffffff" stroke-width="0.5" fill="none" opacity="0.3">
+    <!-- Central diamond -->
+    <polygon points="16,8 24,16 16,24 8,16"/>
+    
+    <!-- Inner diamond lines -->
+    <line x1="16" y1="8" x2="16" y2="24"/>
+    <line x1="8" y1="16" x2="24" y2="16"/>
+    <line x1="12" y1="12" x2="20" y2="20"/>
+    <line x1="20" y1="12" x2="12" y2="20"/>
+  </g>
+  
+  <!-- Large NA letters -->
+  <text x="16" y="20" class="main-letters" text-anchor="middle" fill="#000000">NA</text>
+</svg>

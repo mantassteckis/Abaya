@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment Test</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f6f9fc;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #32325d;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .product-card {
+            border: 1px solid #e6ebf1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .product-info h3 {
+            margin: 0 0 10px 0;
+            color: #32325d;
+        }
+        .product-info p {
+            margin: 0;
+            color: #8898aa;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #32325d;
+        }
+        .buy-button {
+            background: #635bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .buy-button:hover {
+            background: #574dff;
+        }
+        .buy-button:disabled {
+            background: #8898aa;
+            cursor: not-allowed;
+        }
+        .test-cards {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .test-cards h3 {
+            color: #32325d;
+            margin-top: 0;
+        }
+        .card-number {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #e6ebf1;
+            margin: 5px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #8898aa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Stripe Payment Gateway Test</h1>
+        
+        <div class="product-card">
+            <div class="product-info">
+                <h3>Test Product</h3>
+                <p>A sample product for testing Stripe payments</p>
+            </div>
+            <div class="price">$20.00</div>
+            <button class="buy-button" onclick="createCheckoutSession()">Buy Now</button>
+        </div>
+
+        <div class="loading" id="loading">
+            Processing payment...
+        </div>
+
+        <div class="test-cards">
+            <h3>🧪 Test Credit Card Numbers</h3>
+            <p><strong>Success:</strong></p>
+            <div class="card-number">4242 4242 4242 4242</div>
+            <p><strong>Declined:</strong></p>
+            <div class="card-number">4000 0000 0000 0002</div>
+            <p><strong>Insufficient Funds:</strong></p>
+            <div class="card-number">4000 0000 0000 9995</div>
+            <p>Use any future expiry date, any CVC, and any ZIP code.</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Stripe with your publishable key
+        const stripe = Stripe('pk_test_51RimftRxSgSyaHC0ryBne1bJoWOOasF1iPINIaNr9dSlejA6DECbOJLVVLo7hnGyzwxl76aEIo1PLto1asa2LUtZ007KkH0KnT');
+
+        async function createCheckoutSession() {
+            const button = document.querySelector('.buy-button');
+            const loading = document.getElementById('loading');
+            
+            try {
+                button.disabled = true;
+                button.textContent = 'Processing...';
+                loading.style.display = 'block';
+
+                // This would typically call your backend API
+                // For demo purposes, we'll create a session directly
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: [{
+                            price: 'price_1RjUJ0RxSgSyaHC0RalsAo39', // This would be your actual price ID
+                            quantity: 1
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create checkout session');
+                }
+
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error creating checkout session. Please check the console for details.');
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Buy Now';
+                loading.style.display = 'none';
+            }
+        }
+
+        // Check for payment status on page load
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success')) {
+            document.querySelector('.container').innerHTML += '<div class="success">✅ Payment successful! Thank you for your purchase.</div>';
+        }
+        if (urlParams.get('canceled')) {
+            document.querySelector('.container').innerHTML += '<div class="error">❌ Payment was canceled.</div>';
+        }
+    </script>
+</body>
+</html>
