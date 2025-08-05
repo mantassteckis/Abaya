@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "npm cache clean --force && npm install --legacy-peer-deps && npm run build"
   publish = ".next"
 
 [build.environment]
@@ -13,7 +13,7 @@
   command = "npm run dev"
   port = 3000
 
-# Handle redirects and routing
+# Handle Next.js routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
