@@ -13,7 +13,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.31.8",
     "@headlessui/react": "^1.7.15",
-    "@prisma/client": "^6.6.0",
+    "@prisma/client": "^6.13.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-switch": "^1.0.3",
