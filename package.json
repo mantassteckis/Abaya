@@ -6,13 +6,14 @@
     "dev": "next dev",
     "dev:admin": "cd ecommerce-admin && npm run dev",
     "dev:store": "cd ecommerce-store && npm run dev",
-    "build": "npm install --legacy-peer-deps && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.31.8",
     "@headlessui/react": "^1.7.15",
+    "@prisma/client": "^6.13.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-switch": "^1.0.3",
@@ -24,6 +25,7 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.7.0",
     "clsx": "^2.0.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.5.7",
