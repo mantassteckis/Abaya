@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 export default function RootPage() {
   useEffect(() => {
     // Redirect to the ecommerce-store application
-    window.location.href = 'http://localhost:3001';
+    const storeUrl = process.env.NEXT_PUBLIC_STORE_URL || 'https://your-store-domain.netlify.app';
+    window.location.href = storeUrl;
   }, []);
 
   return (
