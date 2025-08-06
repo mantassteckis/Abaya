@@ -1,9 +1,9 @@
 [build]
-  command = "npm cache clean --force && npm install --legacy-peer-deps && npm run build"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "18.18.0"
   NPM_FLAGS = "--legacy-peer-deps"
 
 [[plugins]]
